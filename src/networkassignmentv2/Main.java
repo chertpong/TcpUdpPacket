@@ -40,27 +40,25 @@ public class Main {
 //        });
 //   // t1.start();
 //    //t2.start();
-//        Thread t3 = new Thread(new Runnable() {
-//
-//               @Override
-//               public void run() {
-//                   ServerUDP server = new ServerUDP(1234);
-//                   while(true){
-//                       server.run();
-//                   }
-//               }
-//           }); 
-//        //t3.start();
-//        
-//         Thread t4 = new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                ClientUDP client = new ClientUDP("127.0.0.1", 1234, "1212123");
-//                client.setMsg("Hello from client");
-//                client.send();
-//            }
-//        });
-//         t4.start();
+        Thread t3 = new Thread(new Runnable() {
+
+               @Override
+               public void run() {
+                   ServerUDP server = new ServerUDP(1234);
+                   server.run();
+               }
+           }); 
+        t3.start();
+        
+         Thread t4 = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                ClientUDP client = new ClientUDP("172.168.3.69", 1234, "1212123");
+                client.setMsg("Hello from client");
+                client.send();
+            }
+        });
+         t4.start();
     }
 }
