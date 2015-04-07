@@ -93,6 +93,10 @@ public class ServerUDP {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            finally{
+                byteMsg = new byte[1024];
+                byteAns = new byte[1024];
+            }
         }
         
     }
