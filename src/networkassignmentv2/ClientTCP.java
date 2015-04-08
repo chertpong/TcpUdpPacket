@@ -2,6 +2,7 @@ package networkassignmentv2;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  *
@@ -35,7 +36,14 @@ public class ClientTCP {
         try {
             this.socket = new Socket(host, port);
             this.socket.setSoTimeout(3000); // set connection timeout
-        } 
+        }
+        catch (SocketException se){
+            System.out.println("Timeout!");
+            if (frame != null) {
+                frame.setStatusTxtArea(frame.getStatusTxtArea() + "Timeout!"+"\n");
+            }
+            se.printStackTrace();
+        }
         catch (Exception e) {
           e.printStackTrace();
         }
