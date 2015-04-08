@@ -344,24 +344,30 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Data is/are invalid", "error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    private void validateMsg(){
+    private void validateMsg() throws Exception{
         try{
-            if(Integer.parseInt(msg) <= Math.pow(2, 32) && Integer.parseInt(msg)>=0){
-                throw new Exception();
+            if(Integer.parseInt(msg) > Math.pow(2, 32) || Integer.parseInt(msg)<0){
+                throw new Exception("Message is invalid");
             }
             this.msg = Integer.parseInt(msg)+"";
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Message is invalid", "error", JOptionPane.ERROR_MESSAGE);
+        catch(Exception e){            
+            throw new Exception("Message is invalid");
         }
     }
     private void sendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendBtnActionPerformed
-        loadClientData();
-        if(typeTCPRadioBtn.isSelected()){
-            clientViaTCP();
-        }
-        else{
-            clientViaUDP();
+        try {
+            loadClientData();
+            validateMsg();
+            if(typeTCPRadioBtn.isSelected()){
+                clientViaTCP();
+            }
+            else{
+                clientViaUDP();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, "Message is invalid", "error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_sendBtnActionPerformed
 

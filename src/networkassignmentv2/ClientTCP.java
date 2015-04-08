@@ -58,7 +58,7 @@ public class ClientTCP {
             in.close();
             System.out.println("Sent "+msg+" to "+host+":"+port+" via TCP");
             if(frame!=null){
-                frame.setStatusTxtArea("Sent "+msg+" to "+host+":"+port+" via TCP"+"\n");
+                frame.setStatusTxtArea(frame.getStatusTxtArea()+"Sent "+msg+" to "+host+":"+port+" via TCP"+"\n");
             }
             System.out.println(host+" replied: "+answer);
             if(frame!=null){
