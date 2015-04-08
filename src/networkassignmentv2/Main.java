@@ -73,26 +73,12 @@ public class Main {
                     System.out.println("Message is invalid");
                 }
                 if(args[4].equals("tcp")){
-                    clientThread = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            ClientTCP c = new ClientTCP(args[6], Integer.parseInt(args[8]), args[2]);
-                            c.send();
-                        }
-                    });
-                    clientThread.start();
+                    ClientTCP c = new ClientTCP(args[6], Integer.parseInt(args[8]), args[2]);
+                    c.send();
                 }
                 else if(args[4].equals("udp")){
-                    clientThread2 = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            ClientUDP c = new ClientUDP(args[6], Integer.parseInt(args[8]), args[2]);
-                            c.send();
-                        }
-                    });
-                    clientThread2.start();
+                    ClientUDP c = new ClientUDP(args[6], Integer.parseInt(args[8]), args[2]);
+                    c.send();
                 }
                 else{
                     out();
